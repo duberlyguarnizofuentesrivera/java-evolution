@@ -1,0 +1,62 @@
+<div class="flex flex-row flex-wrap justify-content-center">
+    <div class="flex font-bold border-round m-2">
+        <p-timeline [value]="events" align="alternate" styleClass="customized-timeline">
+            <ng-template let-event pTemplate="marker">
+        <span [style.background-color]="event.color" class="custom-marker shadow-2">
+            <i [ngClass]="event.icon"></i>
+        </span>
+            </ng-template>
+            <ng-template let-event pTemplate="content">
+                <p-card>
+                    <ng-template pTemplate="header">
+                        <div class="flex-column justify-content-between flex-wrap">
+                            <div class="grid">
+                                <div class="col align-items-center justify-content-center">
+                                    <h1>Java {{event.version}}</h1>
+                                </div>
+                                <div class="col align-items-center justify-content-center">
+                                    <p-tag *ngIf="event.supportStatus"
+                                           [style]="{'background': 'linear-gradient(-225deg, #e48232 0%, #f2b418 48%, #a2ff01 100%)'}">
+                                        <div class="flex align-items-center gap-2">
+                                            <i class="pi pi-check-circle"></i>
+                                            <span class="text-base">Soportado</span>
+                                        </div>
+                                    </p-tag>
+                                    <p-tag *ngIf="!event.supportStatus"
+                                           [style]="{'background': 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)'}">
+                                        <div class="flex align-items-center gap-2">
+                                            <i class="pi pi-exclamation-triangle"></i>
+                                            <span class="text-base">Sin Soporte</span>
+                                        </div>
+                                    </p-tag>
+                                </div>
+                            </div>
+                            <div class="flex-row">
+                                <span>Lanzado: {{event.releaseDate | date: 'LLL/yyyy' : 'GTM-5' : 'es'}}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <img *ngIf="event.image" [alt]="event.name"
+                         class="shadow-2"
+                         ngSrc="'https://primefaces.org/cdn/primeng/images/demo/product/' + event.image"
+                         width="200"/>
+                    <p [textContent]="event.summary">
+
+                    </p>
+                    <div *ngIf="event.majorFeatures">
+                        <ul class="list-none">
+                            <li *ngFor="let feature of event.majorFeatures" [textContent]="feature"
+                                class="text-color-secondary"></li>
+                        </ul>
+                    </div>
+                    <div *ngIf="event.jepList">
+                        <p-divider></p-divider>
+                        <p-chip *ngFor="let jep of event.jepList" [label]="jep"></p-chip>
+                    </div>
+                    <button class="p-button-text" label="Read more" pButton></button>
+                </p-card>
+            </ng-template>
+        </p-timeline>
+    </div>
+</div>

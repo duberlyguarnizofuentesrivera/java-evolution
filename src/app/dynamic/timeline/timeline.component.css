@@ -1,0 +1,8 @@
+
+.supported {
+    background: linear-gradient(-225deg, #e48232 0%, #f2b418 48%, #a2ff01 100%);
+}
+
+.not-supported {
+    background: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);
+}
